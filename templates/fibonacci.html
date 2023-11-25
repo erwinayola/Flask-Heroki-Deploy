@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci Generator</title>
+    <style>
+        /* Styling sesuai keinginan Anda */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #008080;
+        }
+
+        #result {
+            margin-top: 20px;
+        }
+
+        label {
+            font-size: 18px;
+        }
+
+        input {
+            padding: 10px;
+            margin: 10px;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .link-button {
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+
+        .link-button button {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .link-button button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fibonacci Generator</h1>
+
+    <label for="inputNumber">Masukkan Jumlah Angka:</label>
+    <input type="number" id="inputNumber" placeholder="Contoh: 5">
+    <button onclick="generateFibonacci()">Generate</button>
+
+    <div id="result"></div>
+
+    <a class="link-button" href="{{ url_for('csv_to_json') }}">
+        <button>Go to CSV to JSON Converter</button>
+    </a>
+
+    <script>
+        function generateFibonacci() {
+            var inputNumber = document.getElementById('inputNumber').value;
+
+            if (inputNumber <= 0) {
+                alert('Masukkan angka yang lebih besar dari 0');
+                return;
+            }
+
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = '';
+
+            var fibonacciArray = calculateFibonacci(inputNumber);
+            resultDiv.innerHTML = 'Deret Fibonacci: ' + fibonacciArray.join(' ');
+        }
+
+        function calculateFibonacci(length) {
+            var fibonacciArray = [1, 1];
+
+            for (var i = 2; i < length; i++) {
+                var nextFibonacci = fibonacciArray[i - 1] + fibonacciArray[i - 2];
+                fibonacciArray.push(nextFibonacci);
+            }
+
+            return fibonacciArray;
+        }
+    </script>
+</body>
+</html>

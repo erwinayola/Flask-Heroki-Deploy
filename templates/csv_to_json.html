@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV to JSON Converter</title>
+    <style>
+        /* Styling sesuai keinginan Anda */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #008080;
+        }
+
+        #result {
+            margin-top: 20px;
+            white-space: pre-wrap;
+            text-align: left;
+        }
+
+        #fileInputContainer {
+            margin: 20px 0;
+        }
+
+        #fileName {
+            margin-top: 10px;
+            color: #555;
+        }
+
+        button {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV to JSON Converter</h1>
+
+    <div id="fileInputContainer">
+        <label for="file">Upload CSV File:</label>
+        <input type="file" id="file" accept=".csv" required>
+        <div id="fileName"></div>
+    </div>
+
+    <button onclick="convertCSVtoJSON()">Convert to JSON</button>
+
+    <button onclick="downloadJSON()">Download JSON</button>
+
+    <div id="result"></div>
+
+    <form action="/login" method="post">
+        <input type="hidden" name="json_data" id="json_data_input">
+        <button type="submit">Continue to Post Method</button>
+    </form>
+
+    <script>
+        var jsonData = null;
+
+        function displayFileName() {
+            var fileInput = document.getElementById('file');
+            var fileNameDisplay = document.getElementById('fileName');
+            fileNameDisplay.innerHTML = fileInput.files[0].name;
+        }
+
+        function convertCSVtoJSON() {
+            var fileInput = document.getElementById('file');
+            var file = fileInput.files[0];
+
+            if (!file) {
+                alert('Please select a file.');
+                return;
+            }
+
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var contents = e.target.result;
+                jsonData = convertCSV(contents);
+                displayJSON(jsonData);
+                document.getElementById('json_data_input').value = JSON.stringify(jsonData);
+            };
+            reader.readAsText(file);
+        }
+
+        function convertCSV(csv) {
+            var lines = csv.split('\n');
+            var result = [];
+
+            var headers = lines[0].split(',');
+            for (var i = 1; i < lines.length; i++) {
+                var obj = {};
+                var currentline = lines[i].split(',');
+
+                for (var j = 0; j < headers.length; j++) {
+                    obj[headers[j]] = currentline[j];
+                }
+
+                result.push(obj);
+            }
+
+            return result;
+        }
+
+        function displayJSON(json) {
+            var resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Converted JSON:\n\n' + JSON.stringify(json, null, 2);
+        }
+
+        function downloadJSON() {
+            if (jsonData === null) {
+                alert('No JSON data available');
+                return;
+            }
+
+            var jsonStr = JSON.stringify(jsonData, null, 2);
+            var blob = new Blob([jsonStr], { type: 'application/json' });
+
+            var url = URL.createObjectURL(blob);
+            var link = document.createElement('a');
+            link.href = url;
+            link.download = 'converted.json';
+            link.click();
+        }
+    </script>
+</body>
+</html>

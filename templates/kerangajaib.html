@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puja Kerang Ajaib Client</title>
+</head>
+<body>
+    <h1>Puja Kerang Ajaib Client</h1>
+
+    {% if welcome_message %}
+    <div>
+        <p>{{ welcome_message }}</p>
+    </div>
+    {% endif %}
+
+    <h2>Enter Your Name</h2>
+    <form action="/" method="POST">
+        <label for="nama">Nama:</label>
+        <input type="text" id="nama" name="nama">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if random_message %}
+    <h2>Random Message:</h2>
+    <p>{{ random_message }}</p>
+    {% endif %}
+
+    <script>
+        // JavaScript code to fetch random message and update the result element
+        async function getRandomMessage() {
+            const nama = document.getElementById('nama').value;
+            const response = await fetch(`/puja_kerang_ajaib?nama=${nama}`);
+            const data = await response.json();
+            document.getElementById('result').innerText = data.pesan_random || data.pesan_selamat_datang || "Error fetching message.";
+        }
+    </script>
+</body>
+</html>

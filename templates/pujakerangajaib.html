@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Puja Kerang Ajaib</title>
+</head>
+<body>
+    {% if user %}
+    <h2>Selamat datang, {{ user }}!</h2>
+    {% endif %}
+    <form action="/login" method="post">
+        <label for="nm">Nama:</label>
+        <input type="text" id="nm" name="nm">
+        <input type="submit" value="Login">
+    </form>
+    <br>
+    <button onclick="getRandomMessage()">Dapatkan Pesan Acak</button>
+    <p id="result"></p>
+
+    <script>
+        function getRandomMessage() {
+            var name = "{{ user }}";
+            var url = name ? '/puja_kerang_ajaib?nama=' + name : '/puja_kerang_ajaib';
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('result').innerText = data.pesan;
+                })
+                .catch(error => console.log(error));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halaman Beranda</title>
+    <style>
+        body {
+            font-family: 'Arial', cursive, sans-serif;
+            background-color: #FBF0B2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #C780FA;
+            margin-bottom: 20px;
+            font-size: 36px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        p {
+            color: #072541;
+            margin-bottom: 20px;
+            font-size: 18px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 40px;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #5272F2;
+            color: #072541;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+            margin: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+        }
+
+        .button:hover {
+            background-color: #d8bfd8;
+            transform: scale(1.05);
+        }
+
+        #myImg {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            /* Remove the box-shadow property */
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(0);
+            }
+        }
+        
+        @media screen and (min-width: 768px) {
+            #myImg {
+                animation: move 1s ease-out;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Selamat Datang di Halaman Beranda</h1>
+        <img id="myImg" src="{{ url_for('static', filename='images/hello.png') }}" alt="Gambar Fradinka">
+        <div class="button-container">
+            <a class="button" href="/cv">Lihat Curriculum Vitae</a>
+            <a class="button" href="/porto">Lihat Portfolio</a>
+            <a class="button" href="/blog">Lihat Blog Pribadi</a>
+            <a class="button" href="/csv_to_json">CSV to JSON Converter</a>
+            <a class="button" href="/fibonacci">Fibonacci</a>
+            <a class="button" href="/post">Post Method</a>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var img = document.getElementById("myImg");
+            img.style.animation = "move 1s ease-out";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae</title>
+    <style>
+        body {
+            font-family: 'Arial', cursive, sans-serif;
+            margin: 20px;
+            background-color: #F9EBB2; /* Light peach background color */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1 {
+            text-align: center;
+            color: #072541; /* Tomato red color */
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #072541; /* Tomato red color */
+        }
+
+        p {
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+            color: #666;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #072541;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #072541;
+        }
+
+        button {
+            background-color: #072541; /* Blue color */
+            color: #FFF; /* White color */
+            padding: 12px 24px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #051A33; /* Darker blue color on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Curriculum Vitae</h1>
+    <div class="section">
+        <h2>{{ cv['Nama'] }}</h2>
+        <p><strong>Instagram:</strong> <a href="{{ cv['Instagram'] }}" target="_blank">{{ cv['Instagram'] }}</a></p>
+        <p>{{ cv['Perkenalan'] }}</p>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">Skills</h3>
+        <ul>
+            <li><strong>Hard Skills:</strong> {{ cv['Skills'][0]['Hard Skills'] }}</li>
+            <li><strong>Soft Skills:</strong> {{ cv['Skills'][1]['Soft Skills'] }}</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">Riwayat Pendidikan</h3>
+        <ul>
+            {% for item in cv['Riwayat Pendidikan'] %}
+                {% for key, value in item.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">Pengalaman Organisasi</h3>
+        <ul>
+            {% for item in cv['Pengalaman Organisasi'] %}
+                {% for key, value in item.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="section">
+        <h3 class="section-title">Pengalaman Kepanitiaan</h3>
+        <ul>
+            {% for item in cv['Pengalaman Kepanitiaan'] %}
+                {% for key, value in item.items() %}
+                    <li><strong>{{ key }}:</strong> {{ value }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+    <a href="{{ url_for('portfolio') }}"><button>Explore Portfolio</button></a>
+</body>
+</html>

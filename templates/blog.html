@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            font-family: 'Arial', cursive, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .spotify-container {
+            background-color: #191414;
+            color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .spotify-container:hover {
+            transform: scale(1.02);
+        }
+
+        .spotify-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .spotify-song {
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .spotify-song:hover {
+            color: #1DB954;
+        }
+
+        .spotify-link {
+            color: #1DB954;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .spotify-link:hover {
+            color: #1ED760;
+        }
+
+        .spotify-images {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .spotify-image {
+            width: auto;
+            height: 300px;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .spotify-image:hover {
+            transform: scale(1.05);
+        }
+
+        .spotify-link-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .spotify-link-button {
+            background-color: #1DB954;
+            color: #fff;
+            font-weight: bold;
+            padding: 10px 20px;
+            border-radius: 4px;
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s;
+        }
+
+        .spotify-link-button:hover {
+            background-color: #1ED760;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mx-auto mt-8">
+        <div class="spotify-container">
+            <h1 class="spotify-title text-center mb-8">TayTay✨️🎶 - playlist by vannnn</h1>
+            <div class="spotify-songs">
+                <ul>
+                    <li class="spotify-song">Love Story</li>
+                    <li class="spotify-song">You Belong with Me</li>
+                    <li class="spotify-song">Blank Space</li>
+                    <li class="spotify-song">Shake It Off</li>
+                    <li class="spotify-song">Bad Blood</li>
+                    <li class="spotify-song">Delicate</li>
+                    <li class="spotify-song">Lover</li>
+                    <li class="spotify-song">Cardigan</li>
+                    <li class="spotify-song">Willow</li>
+                    <li class="spotify-song">Cruel Summer</li>
+                </ul>
+            </div>
+            <div class="spotify-images">
+                <img class="spotify-image rounded-lg" src="{{ url_for('static', filename='images/tay2.jpg') }}" alt="Image 1">
+                <img class="spotify-image rounded-lg" src="{{ url_for('static', filename='images/tay4.jpg') }}" alt="Image 2">
+                <img class="spotify-image rounded-lg" src="{{ url_for('static', filename='images/tay3.jpg') }}" alt="Image 3">
+            </div>
+            <div class="spotify-link-container">
+                <a class="spotify-link-button" href="https://open.spotify.com/playlist/2JvghYP3wbXYgUTigPiWU4?si=vTdZUxBlTbCTQa9jiCE-OA">Listen on Spotify</a>
+            </div>
+        </div>
+        <div class="mt-8">
+            <a href="{{ url_for('biodata') }}"><button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Go to Biodata</button></a>
+        </div>
+    </div>
+</body>
+</html>
